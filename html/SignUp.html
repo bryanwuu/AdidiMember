@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Insert title here</title>
+</head>
+<script language="JavaScript" src="lib/jquery-1.7.2.js"></script>
+<script language="JavaScript">
+ 
+
+
+$(function(){
+
+	$('#button1').click(function() {
+		$("#button1").val("done");	
+		var formData = $("form.signup").serializeArray();
+		console.log(formData);
+		var loginFormObject = {};
+		$.each(formData,
+			    function(i, v) {
+			        loginFormObject[v.name] = v.value;
+			    });
+		var requestData = "Param=" + JSON.stringify( loginFormObject ) ; 
+		//alert(requestData);
+		$.ajax({
+			type:"POST",
+			url: "/AdidiMember/MainServ.php",
+			data :requestData,
+			cache : false,
+			success : function(msg){
+				
+				var retData = JSON.parse ( msg );
+				alert("bSuccess = " + retData.bSuccess);
+			}
+		});
+	});
+
+});
+
+
+</script>
+<body>
+sign up
+<form name="input" class="signup" method="post">
+Username: <input type="text" name="username " value = "bryan"> <br>
+Password: <input type="password" name="password" value = "1234"> <br>
+email: <input type="text" name="email" value = "bryanwuu@gmail.com"> <br>
+
+<input type="button" id="button1" name="button1" value="Submit">
+</form>
+
+</body>
+</html>
