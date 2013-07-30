@@ -21,17 +21,24 @@ $(function(){
 			        loginFormObject[v.name] = v.value;
 			    });
 		var requestData = "Param=" + JSON.stringify( loginFormObject ) ; 
-		//alert(requestData);
+		alert(requestData);
 		$.ajax({
 			type:"POST",
 			url: "/AdidiMember/MainServ.php",
 			data :requestData,
 			cache : false,
 			success : function(msg){
-				
-				var retData = JSON.parse ( msg );
-				alert("bSuccess = " + retData.bSuccess);
-			}
+				alert(msg);
+ 				//var retData = JSON.parse ( msg );
+				/* if(retData.bSuccess == false){
+				//	alert(msg);
+					
+				}else{
+					alert("bSuccess = " + retData.bSuccess);
+					
+				}
+ 			 */}
+		
 		});
 	});
 
@@ -40,13 +47,13 @@ $(function(){
 
 </script>
 <body>
-sign up
+Sign Up
 <form name="input" class="signup" method="post">
-Username: <input type="text" name="username " value = "bryan"> <br>
-Password: <input type="password" name="password" value = "1234"> <br>
-email: <input type="text" name="email" value = "bryanwuu@gmail.com"> <br>
-
-<input type="button" id="button1" name="button1" value="Submit">
+Username: <input type="text" name="username" value = "bryan"/> <br>
+Password: <input type="password" name="password" value = "1234"/> <br>
+email: <input type="text" name="email" value = "bryanwuu@gmail.com"/> <br>
+<input type="hidden" name="cmd" value="NewUser"/>
+<input type="button" id="button1" name="button1" value="Submit"/>
 </form>
 
 </body>
